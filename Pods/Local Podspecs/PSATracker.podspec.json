@@ -1,0 +1,49 @@
+{
+  "name": "PSATracker",
+  "version": "0.0.1",
+  "summary": "PSATracker is a mobile and event analytics platform.",
+  "description": "PSATracker is a mobile and event analytics platform.",
+  "homepage": "http://EXAMPLE/PSATracker",
+  "license": "MIT",
+  "authors": "PSA",
+  "social_media_url": "https://twitter.com/PSA",
+  "swift_versions": "5.0",
+  "platforms": {
+    "ios": "11.0",
+    "osx": "10.13",
+    "tvos": "12.0",
+    "watchos": "6.0"
+  },
+  "source": {
+    "http": "file:/Users/rajankumar/Documents/Tejas Data/Zipped Folders/swift/SubModule/PSATracker/PSATracker"
+  },
+  "source_files": "PSATracker/Tracker/Sources/**/*.swift",
+  "ios": {
+    "frameworks": [
+      "CoreTelephony",
+      "UIKit",
+      "Foundation"
+    ]
+  },
+  "osx": {
+    "frameworks": [
+      "AppKit",
+      "Foundation"
+    ]
+  },
+  "tvos": {
+    "frameworks": [
+      "UIKit",
+      "Foundation"
+    ]
+  },
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES"
+  },
+  "dependencies": {
+    "FMDB": [
+      "~> 2.7"
+    ]
+  },
+  "swift_version": "5.0"
+}

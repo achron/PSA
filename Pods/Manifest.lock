@@ -1,0 +1,35 @@
+PODS:
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - PSANotificationContent (0.0.1)
+  - PSANotificationService (0.0.1)
+  - PSATracker (0.0.1):
+    - FMDB (~> 2.7)
+
+DEPENDENCIES:
+  - PSANotificationContent (from `SubModule/PSANotificationContent/PSANotificationContent.podspec`)
+  - PSANotificationService (from `SubModule/PSANotificationService/PSANotificationService.podspec`)
+  - PSATracker (from `SubModule/PSATracker/PSATracker.podspec`)
+
+SPEC REPOS:
+  trunk:
+    - FMDB
+
+EXTERNAL SOURCES:
+  PSANotificationContent:
+    :path: SubModule/PSANotificationContent/PSANotificationContent.podspec
+  PSANotificationService:
+    :path: SubModule/PSANotificationService/PSANotificationService.podspec
+  PSATracker:
+    :path: SubModule/PSATracker/PSATracker.podspec
+
+SPEC CHECKSUMS:
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  PSANotificationContent: 45edc53797eac66739a8159b44e4483fe85b8980
+  PSANotificationService: c1d1738e660112ccd2c9dd035d75ff6a7c180100
+  PSATracker: 24ad4efd07acf77d22e95ca8e6921b8490b69d87
+
+PODFILE CHECKSUM: 53cb4ccfe4dfec67f5f95c5c864cd6973aa623b8
+
+COCOAPODS: 1.15.2

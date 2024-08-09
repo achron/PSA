@@ -1,0 +1,11 @@
+framework module PSATracker {
+  umbrella header "PSATracker.h"
+  export *
+
+  module * { export * }
+}
+
+module PSATracker.Swift {
+  header "PSATracker-Swift.h"
+  requires objc
+}

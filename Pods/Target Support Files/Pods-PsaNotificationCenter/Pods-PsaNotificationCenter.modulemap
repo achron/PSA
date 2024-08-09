@@ -1,0 +1,6 @@
+framework module Pods_PsaNotificationCenter {
+  umbrella header "Pods-PsaNotificationCenter-umbrella.h"
+
+  export *
+  module * { export * }
+}

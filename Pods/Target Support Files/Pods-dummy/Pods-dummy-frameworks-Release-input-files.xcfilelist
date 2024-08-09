@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-dummy/Pods-dummy-frameworks.sh
+${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework
+${BUILT_PRODUCTS_DIR}/PSATracker/PSATracker.framework
+${BUILT_PRODUCTS_DIR}/PSANotificationService/PSANotificationService.framework
+${BUILT_PRODUCTS_DIR}/PSANotificationContent/PSANotificationContent.framework
