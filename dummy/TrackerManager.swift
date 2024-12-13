@@ -8,31 +8,37 @@ import Foundation
 import PSATracker
 
 class TrackerManager{
-    static var tracker:TrackerController? = PSATracker.createTracker(namespace: "psa-swift", endpoint: "https://orga.proemsportsanalytics.com") {
+    static var tracker:TrackerController? = PSATracker.createTracker(namespace: "psa-swift", endpoint: "https://internal.proemsportsanalytics.com") {
         TrackerConfiguration()
             .appId("psa-swift-ios")
             .base64Encoding(false)
-            .sessionContext(true)
+            .sessionContext(false)
             .platformContext(true)
-            .lifecycleAutotracking(true)
-            .screenViewAutotracking(true)
-            .screenContext(true)
-            .applicationContext(true)
-            .exceptionAutotracking(true)
+            .lifecycleAutotracking(false)
+            .screenViewAutotracking(false)
+            .screenContext(false)
+            .applicationContext(false)
+            .exceptionAutotracking(false)
             .installAutotracking(true)
             .userAnonymisation(false)
-        SessionConfiguration(
-            foregroundTimeout: Measurement(value: 30, unit: .minutes),
-            backgroundTimeout: Measurement(value: 30, unit: .minutes)
-        )
+      
     }
 
     
     static func notificationReceivedEvernt(data:[AnyHashable : Any]){
         tracker?.subject?.userId = Preference.userId
         
-        let data = ["psa_ma_id":  data["psa_ma_id"] as? String ?? nil, "psa_campaign_id":  data["psa_campaign_id"] as? String ?? nil, "user_id":  Preference.userId, "psa_event_id": data["psa_event_id"] as? String ?? nil]
-        let event = SelfDescribing(schema: "iglu:com.proemsportsanalytics/notification_received/jsonschema/1-0-0", payload: data)
+        let data = ["campaign_source":  "PUSH-NOTIFICATION",
+                    "campaign_id":  data["psa_campaign_id"] as? String ?? nil,
+                    "user_id":  Preference.userId,
+                    "event_type": "notification-dropped",
+                    "club": data["club"] as? String ?? nil,
+                    "environment": data["environment"] as? String ?? nil,
+                    "customer_key": data["customer_key"]  as? String ?? nil,
+                    "reasons": nil,
+                    "platform_name": "ios"
+        ]
+        let event = SelfDescribing(schema: "iglu:com.proemsportsanalytics/notification_event/jsonschema/1-0-0", payload: data)
         let uuid = TrackerManager.tracker?.track(event)
         print("notificationReceivedEvernt - ",uuid ?? "")
     }
@@ -40,8 +46,18 @@ class TrackerManager{
         tracker?.subject?.userId = Preference.userId
         
         
-        let data = ["psa_ma_id":  data["psa_ma_id"] as? String ?? nil, "psa_campaign_id":  data["psa_campaign_id"] as? String ?? nil, "user_id":  Preference.userId, "psa_event_id": data["psa_event_id"] as? String ?? nil]
-        let event = SelfDescribing(schema: "iglu:com.proemsportsanalytics/notification_opened/jsonschema/1-0-0", payload: data)
+        let data = ["campaign_source":  "PUSH-NOTIFICATION",
+                    "campaign_id":  data["psa_campaign_id"] as? String ?? nil,
+                    "user_id":  Preference.userId,
+                    "event_type": "notification-clicked",
+                    "club": data["club"] as? String ?? nil,
+                    "environment": data["environment"] as? String ?? nil,
+                    "customer_key": data["customer_key"]  as? String ?? nil,
+                    "reasons": nil,
+                    "platform_name": "ios"
+        ]
+
+        let event = SelfDescribing(schema: "iglu:com.proemsportsanalytics/notification_event/jsonschema/1-0-0", payload: data)
         let uuid = TrackerManager.tracker?.track(event)
         print("notificationOpenedEvernt - ",uuid ?? "")
     }

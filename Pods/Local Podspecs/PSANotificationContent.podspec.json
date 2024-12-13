@@ -6,7 +6,7 @@
   "license": "MIT",
   "authors": "PSA",
   "source": {
-    "http": "file:/Users/rajankumar/Documents/Tejas Data/Zipped Folders/swift/SubModule/PSANotificationContent/PSANotificationContent"
+    "http": "file:/Users/rajatkumar/Documents/psa-ios-tracker/SubModule/PSANotificationContent/PSANotificationContent"
   },
   "requires_arc": true,
   "platforms": {

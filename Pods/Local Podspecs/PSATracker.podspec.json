@@ -15,7 +15,7 @@
     "watchos": "6.0"
   },
   "source": {
-    "http": "file:/Users/rajankumar/Documents/Tejas Data/Zipped Folders/swift/SubModule/PSATracker/PSATracker"
+    "http": "file:/Users/rajatkumar/Documents/psa-ios-tracker/SubModule/PSATracker/PSATracker"
   },
   "source_files": "PSATracker/Tracker/Sources/**/*.swift",
   "ios": {

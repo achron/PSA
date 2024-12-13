@@ -14,7 +14,7 @@ class ViewModel {
     var failed : (()-> ())?
     
     func login(_ param:[String:Any]){
-        apiHandler.fetchData(ofType: APIModel.self, httpMethod: "POST", url: "https://app-backend-psa-d2c4cf36bd0c.herokuapp.com/login", body: param) { [weak self] success, detail, error in
+        apiHandler.fetchData(ofType: APIModel.self, httpMethod: "POST", url: "https://psa-app-backend.azurewebsites.net/login", body: param) { [weak self] success, detail, error in
             
             if success, let data = detail {
                 self?.detail = data
@@ -27,7 +27,7 @@ class ViewModel {
     
     func signUp(_ param:[String:Any]){
         
-        apiHandler.fetchData(ofType: APIModel.self, httpMethod: "POST", url: "https://app-backend-psa-d2c4cf36bd0c.herokuapp.com/register", body: param) { [weak self] success, detail, error in
+        apiHandler.fetchData(ofType: APIModel.self, httpMethod: "POST", url: "https://psa-app-backend.azurewebsites.net/register", body: param) { [weak self] success, detail, error in
             
             if success, let data = detail {
                 self?.detail = data

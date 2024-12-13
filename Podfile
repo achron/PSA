@@ -9,7 +9,9 @@ target 'dummy' do
 #  pod 'SnowplowTracker', '~> 5.0'
 #  pod 'SnowplowTracker', :path => 'SubModule/snowplow-ios-tracker-master/SnowplowTracker.podspec'
 pod 'PSATracker', :path => 'SubModule/PSATracker/PSATracker.podspec'
-  
+pod 'Firebase'
+pod 'Firebase/Messaging'
+
 end
 
 target 'PsaNotificationCenter' do
@@ -21,7 +23,7 @@ target 'PsaNotificationCenter' do
   pod 'PSANotificationService', :path => 'SubModule/PSANotificationService/PSANotificationService.podspec'
   pod 'PSATracker', :path => 'SubModule/PSATracker/PSATracker.podspec'
 #  pod 'SnowplowTracker', :path => 'SubModule/snowplow-ios-tracker-master/SnowplowTracker.podspec'
- 
+pod 'Firebase/Messaging'
 end
 
 target 'PsaNotificationContentCenter' do
@@ -33,7 +35,7 @@ target 'PsaNotificationContentCenter' do
   pod 'PSANotificationContent', :path => 'SubModule/PSANotificationContent/PSANotificationContent.podspec'
   pod 'PSATracker', :path => 'SubModule/PSATracker/PSATracker.podspec'
 #  pod 'SnowplowTracker', :path => 'SubModule/snowplow-ios-tracker-master/SnowplowTracker.podspec'
-  
+pod 'Firebase/Messaging'
 end
 
 post_install do |installer|
