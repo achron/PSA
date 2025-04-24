@@ -29,14 +29,14 @@ class LoggedUserVC: UIViewController  {
                 self.token = token
                 print("FCM registration token: \(token)")
                 Preference.fcmToken =  token
-                TrackerManager.updateFcm()
+                TrackerManager.shared.updateFcm()
             }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        TrackerManager.userEvent()
+//        TrackerManager.shared.userEvent()
     }
     
     @objc func labelDidGetTapped(sender: UITapGestureRecognizer) {
@@ -47,10 +47,14 @@ class LoggedUserVC: UIViewController  {
     }
     
     @IBAction func logOutAction(_ sender: UIButton) {
+        TrackerManager.shared.logout()
         Preference.deleteAll()
+
         if let loggedVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ViewController") as? ViewController {
             UIApplication.firstKeyWindowForConnectedScenes?.rootViewController = loggedVC
             UIApplication.firstKeyWindowForConnectedScenes?.makeKeyAndVisible()
         }
     }
 }
+
+

@@ -58,6 +58,14 @@ class Preference{
         }
     }
     
+    static var name : String {
+        get{
+            return userDefault?.value(forKey: "name") as? String ?? ""
+        }
+        set(val){
+            userDefault?.set(val, forKey: "name")
+        }
+    }
     static func deleteAll() {
         let dictionary = userDefault?.dictionaryRepresentation()
         dictionary?.keys.forEach { key in

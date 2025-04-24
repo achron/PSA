@@ -11,6 +11,7 @@ target 'dummy' do
 pod 'PSATracker', :path => 'SubModule/PSATracker/PSATracker.podspec'
 pod 'Firebase'
 pod 'Firebase/Messaging'
+pod 'GoogleUtilities'
 
 end
 
@@ -24,7 +25,8 @@ target 'PsaNotificationCenter' do
   pod 'PSATracker', :path => 'SubModule/PSATracker/PSATracker.podspec'
 #  pod 'SnowplowTracker', :path => 'SubModule/snowplow-ios-tracker-master/SnowplowTracker.podspec'
 pod 'Firebase/Messaging'
-end
+pod 'GoogleUtilities'
+endhttp
 
 target 'PsaNotificationContentCenter' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -36,6 +38,7 @@ target 'PsaNotificationContentCenter' do
   pod 'PSATracker', :path => 'SubModule/PSATracker/PSATracker.podspec'
 #  pod 'SnowplowTracker', :path => 'SubModule/snowplow-ios-tracker-master/SnowplowTracker.podspec'
 pod 'Firebase/Messaging'
+pod 'GoogleUtilities'
 end
 
 post_install do |installer|

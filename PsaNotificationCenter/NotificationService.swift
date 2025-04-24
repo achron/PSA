@@ -24,7 +24,7 @@ class NotificationService: UNNotificationServiceExtension {
             // Modify the notification content here...
             bestAttemptContent.title = "\(bestAttemptContent.title)"
             print("Notification Title is \(bestAttemptContent.title)")
-            TrackerManager.notificationReceivedEvernt(data: bestAttemptContent.userInfo)
+            TrackerManager.shared.notificationReceivedEvernt(data: bestAttemptContent.userInfo)
             
             //contentHandler(bestAttemptContent)
             Messaging.serviceExtension().populateNotificationContent(bestAttemptContent, withContentHandler: contentHandler)
