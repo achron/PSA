@@ -97,4 +97,4 @@ PSA-iOS/
 
 ## 👨‍💻 Authors
 
-Made with ❤️ by the PSA Team
+Crafted with ❤️ by the PSA Team
