@@ -9,9 +9,10 @@ target 'dummy' do
 #  pod 'SnowplowTracker', '~> 5.0'
 #  pod 'SnowplowTracker', :path => 'SubModule/snowplow-ios-tracker-master/SnowplowTracker.podspec'
 pod 'PSATracker', :path => 'SubModule/PSATracker/PSATracker.podspec'
+pod 'GoogleUtilities'
 pod 'Firebase'
 pod 'Firebase/Messaging'
-pod 'GoogleUtilities'
+
 
 end
 
@@ -24,9 +25,10 @@ target 'PsaNotificationCenter' do
   pod 'PSANotificationService', :path => 'SubModule/PSANotificationService/PSANotificationService.podspec'
   pod 'PSATracker', :path => 'SubModule/PSATracker/PSATracker.podspec'
 #  pod 'SnowplowTracker', :path => 'SubModule/snowplow-ios-tracker-master/SnowplowTracker.podspec'
-pod 'Firebase/Messaging'
 pod 'GoogleUtilities'
-endhttp
+pod 'Firebase/Messaging'
+
+end
 
 target 'PsaNotificationContentCenter' do
   # Comment the next line if you don't want to use dynamic frameworks

@@ -41,7 +41,7 @@ static let shared = TrackerManager()
             
                             self.tracker = PSATracker.createTracker(namespace: "psa-swift", endpoint: "https://psasdk.proemsportsanalytics.com") {
                                 TrackerConfiguration()
-                                    .appId("ccgt-swift-ios")
+                                    .appId("72946530")
                                     .base64Encoding(true)
                                     .sessionContext(true)
                                     .platformContext(true)
@@ -75,13 +75,13 @@ static let shared = TrackerManager()
         guard let payload = data as? [String: Any] else {
             return
         }
-        
+        print(payload,"finalPayload")
         let event = SelfDescribing(
             schema: "iglu:com.proemsportsanalytics/notification_event/jsonschema/1-0-0",
             payload: payload
         )
 
-        let uuid = tracker?.track(event)
+         tracker?.track(event)
     }
 
      func notificationOpenedEvernt(data: [AnyHashable: Any]) {
@@ -89,11 +89,12 @@ static let shared = TrackerManager()
             print("Invalid data format for notificationOpenedEvernt")
             return
         }
+         print(payload)
         let event = SelfDescribing(
             schema: "iglu:com.proemsportsanalytics/notification_event/jsonschema/1-0-0",
             payload: payload
         )
-        let uuid = tracker?.track(event)
+       tracker?.track(event)
     }
 
      func updateFcm() {
