@@ -8,31 +8,53 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: macos-latest
+    runs-on: macos-13
+
     steps:
-      - name: Checkout repository
+      # 1. Checkout репозитория
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Ruby (for CocoaPods)
-        uses: ruby/setup-ruby@v1
+      # 2. Установка Ruby 3.2 (чтобы избежать багов со старой версией)
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
         with:
-          ruby-version: '3.1' # можно поставить версию, которая поддерживает твой cocoapods
+          ruby-version: '3.2'
 
-      - name: Install CocoaPods
+      # 3. Установка последней версии CocoaPods
+      - name: Install latest CocoaPods
         run: |
-          gem install cocoapods
-          pod repo update
+          sudo gem install cocoapods --pre
+          pod --version
 
-      - name: Install dependencies
-        working-directory: dummy
-        run: pod install
+      # 4. Cache для Pods (ускоряет CI)
+      - name: Cache CocoaPods
+        uses: actions/cache@v3
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
 
-      - name: Build and run tests
-        working-directory: dummy
+      # 5. Установка зависимостей через CocoaPods
+      - name: Install Pods
+        run: pod install --project-directory=dummy
+
+      # 6. Проверяем наличие схемы и workspace
+      - name: Validate Xcode Workspace
+        run: |
+          ls -R dummy
+          if [ ! -d "dummy/dummy.xcworkspace" ]; then
+            echo "❌ Workspace not found! Did you share the scheme?"
+            exit 1
+          fi
+
+      # 7. Запуск тестов
+      - name: Run Tests
         run: |
           xcodebuild \
-            -workspace dummy.xcworkspace \
+            -workspace dummy/dummy.xcworkspace \
             -scheme dummy \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.4' \
-            test
+            clean test | xcpretty
