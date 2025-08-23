@@ -2,7 +2,7 @@ platform :ios, '16.0'
 
 target 'dummy' do
   use_frameworks!
-  pod 'PSATracker', :git => 'https://github.com/achron/notification-pods.git', :branch => 'develop'
+  pod 'PSATracker', :git => 'https://github.com/achron/notification-pods.git '
 end
 
 post_install do |installer|
