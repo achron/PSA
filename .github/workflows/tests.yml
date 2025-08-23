@@ -78,7 +78,7 @@ jobs:
       - name: Validate Xcode Workspace
         run: |
           ls -R dummy
-          if [ ! -d "dummy/dummy.xcworkspace" ]; then
+          if [ ! -d "dummy.xcworkspace" ]; then
             echo "❌ Workspace not found! Did you share the scheme?"
             exit 1
           fi
@@ -87,7 +87,7 @@ jobs:
       - name: Run Tests
         run: |
           xcodebuild \
-            -workspace dummy/dummy.xcworkspace \
+            -workspace dummy.xcworkspace \
             -scheme dummy \
             -sdk iphonesimulator \
             -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.4' \
