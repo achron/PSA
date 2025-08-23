@@ -36,6 +36,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pods-
 
+      - name: Validate Podfile
+        run: cat Podfile
+
+
       # 5. Установка зависимостей через CocoaPods
       - name: Install Pods
         run: pod install
