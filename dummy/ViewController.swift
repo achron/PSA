@@ -21,12 +21,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         viewModel.action = { [weak self] in
             DispatchQueue.main.async {
                 if let  data = self?.viewModel.detail?.data{
-                    Preference.email = data.email
-                    Preference.userId = data.id
-                    Preference.userToken = data.token ?? ""
-                    Preference.isLogedIn = true
-                    TrackerManager.shared.loginEvent()
-                    
+                    PSATracker.shared.updatePreferences(
+                        email: data.email,
+                        userId: data.id,
+                        userToken: data.token ?? ""
+                    )
+                    PSATracker.shared.loginEvent()
+                    PSATracker.shared.userEvent()
                     self?.alert.dismiss(animated: false)
                     self?.navigateToLoggedView()
                 } else{
@@ -77,7 +78,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.alert.dismiss(animated: true)
         alert.addAction(UIAlertAction(title: "ok", style: .default, handler:nil))
         self.present(alert, animated: true);
-        TrackerManager.shared.logout()
+        PSATracker.shared.logout()
     }
     func presentLoadingPopup(){
          self.alert.dismiss(animated: true)

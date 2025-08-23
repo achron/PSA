@@ -1,6 +1,0 @@
-framework module PSANotificationContent {
-  umbrella header "PSANotificationContent-umbrella.h"
-
-  export *
-  module * { export * }
-}

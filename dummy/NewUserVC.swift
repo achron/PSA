@@ -17,14 +17,17 @@ class NewUserVC: UIViewController, UITextFieldDelegate {
         viewModel.action = { [weak self] in
             DispatchQueue.main.async {
                 if let data = self?.viewModel.detail?.data {
-                    Preference.email = data.email
-                    Preference.userId = data.id
-                    Preference.userToken = data.token ?? ""
+                    PSATracker.shared.updatePreferences(
+                        email: data.email,
+                        userId: data.id,
+                    
+                        userToken: data.token ?? ""
+                    )
                     self?.alert.dismiss(animated: false)
                     print(data, "login data")
-                    Preference.isLogedIn = true
-                    TrackerManager.shared.loginEvent()
-                    TrackerManager.shared.userEvent()
+                    
+                    PSATracker.shared.loginEvent()
+                    PSATracker.shared.userEvent()
                     self?.navigateToLoggedView() // Calls the method
                 } else {
                     self?.presentfailedPopup()
@@ -42,8 +45,12 @@ class NewUserVC: UIViewController, UITextFieldDelegate {
         let name: String = name.text ?? ""
         let email: String = email.text ?? ""
         let password: String = password.text ?? ""
-        Preference.email = email
-        Preference.name = name
+        PSATracker.shared.updatePreferences(
+            email: email,
+           userId: "",
+            userToken: "",
+            isLogedIn: false
+        )
         
         if name.count >= 1 && email.count >= 1 && password.count >= 1 {
             viewModel.signUp([
@@ -79,7 +86,7 @@ class NewUserVC: UIViewController, UITextFieldDelegate {
         alert = UIAlertController(title: "Message", message: "Wrong name, email or password!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
         self.present(alert, animated: true)
-        TrackerManager.shared.logout()
+        PSATracker.shared.logout()
     }
 
     func presentLoadingPopup() {

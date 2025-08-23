@@ -13,10 +13,10 @@ class LoggedUserVC: UIViewController  {
     @IBOutlet weak var labelUserName: UILabel!
     var message : String = ""
     
-    var  token = Preference.fcmToken
+    var  token = PSATracker.shared.getPreferenceToken()
     override func viewDidLoad() {
         super.viewDidLoad()
-        labelUserName.text = "FCMToken = \(Preference.fcmToken)"
+        labelUserName.text = "FCMToken = \(token)"
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelDidGetTapped))
 
         labelUserName.isUserInteractionEnabled = true
@@ -28,8 +28,8 @@ class LoggedUserVC: UIViewController  {
             } else if let token = token {
                 self.token = token
                 print("FCM registration token: \(token)")
-                Preference.fcmToken =  token
-                TrackerManager.shared.updateFcm()
+                PSATracker.shared.updateToken(token: token)
+                 
             }
         }
     }
@@ -47,8 +47,8 @@ class LoggedUserVC: UIViewController  {
     }
     
     @IBAction func logOutAction(_ sender: UIButton) {
-        TrackerManager.shared.logout()
-        Preference.deleteAll()
+        PSATracker.shared.logout()
+        PSATracker.shared.preferencesDeleteAll()
 
         if let loggedVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ViewController") as? ViewController {
             UIApplication.firstKeyWindowForConnectedScenes?.rootViewController = loggedVC

@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import PSATracker
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,8 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
       
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        if Preference.isLogedIn, let loggedVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "LoggedUserVC") as? LoggedUserVC {
-            loggedVC.message = Preference.email
+        if PSATracker.shared.getPreferenceIsLogedIn(), let loggedVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "LoggedUserVC") as? LoggedUserVC {
+            loggedVC.message = PSATracker.shared.getPreferenceEmail()
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = loggedVC
             self.window = window
