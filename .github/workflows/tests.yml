@@ -39,6 +39,36 @@ jobs:
       - name: Validate Podfile
         run: cat Podfile
 
+      - name: Create shared scheme manually
+        run: |
+          mkdir -p dummy.xcodeproj/xcshareddata/xcschemes
+          cat > dummy.xcodeproj/xcshareddata/xcschemes/dummy.xcscheme <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <Scheme
+            LastUpgradeVersion = "1430"
+            version = "1.7">
+            <BuildAction
+                parallelizeBuildables = "YES"
+                buildImplicitDependencies = "YES">
+                <BuildActionEntries>
+                  <BuildActionEntry
+                      buildForTesting = "YES"
+                      buildForRunning = "YES"
+                      buildForProfiling = "YES"
+                      buildForArchiving = "YES"
+                      buildForAnalyzing = "YES">
+                      <BuildableReference
+                        BuildableIdentifier = "primary"
+                        BlueprintIdentifier = "dummy"
+                        BuildableName = "dummy.app"
+                        BlueprintName = "dummy"
+                        ReferencedContainer = "container:dummy.xcodeproj">
+                      </BuildableReference>
+                  </BuildActionEntry>
+                </BuildActionEntries>
+            </BuildAction>
+          </Scheme>
+          EOF
 
       # 5. Установка зависимостей через CocoaPods
       - name: Install Pods
