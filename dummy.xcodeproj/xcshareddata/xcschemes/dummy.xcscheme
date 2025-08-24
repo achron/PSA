@@ -23,23 +23,27 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Tests"
-               BuildableName = "Tests.xctest"
-               BlueprintName = "Tests"
-               ReferencedContainer = "container:dummy.xcodeproj">
-            </BuildableReference>
+               blueprintIdentifier = "6075A5C424B9344E000C297C"
+               buildableName = "YourTestTargetName.xctest"
+               referencedContainer = "container:YourProject.xcodeproj" />
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            blueprintIdentifier = "6075A5C424B9344E000C297C"
+            buildableName = "YourAppName.app"
+            referencedContainer = "container:YourProject.xcodeproj" />
+      </MacroExpansion>
    </TestAction>
+
    <LaunchAction
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
