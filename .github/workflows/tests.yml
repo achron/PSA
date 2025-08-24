@@ -90,5 +90,5 @@ jobs:
             -workspace dummy.xcworkspace \
             -scheme dummy \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18' \
+            -destination 'platform=iOS Simulator,OS=latest'
             clean test | xcpretty
