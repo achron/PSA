@@ -89,6 +89,5 @@ jobs:
           xcodebuild \
             -workspace dummy.xcworkspace \
             -scheme dummy \
-            -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,OS=latest'
+
             clean test | xcpretty
