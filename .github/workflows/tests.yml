@@ -14,6 +14,8 @@ jobs:
       # 1. Checkout репозитория
       - name: Checkout
         uses: actions/checkout@v4
+        xcodebuild -workspace dummy.xcworkspace -scheme dummy -sdk iphoneos -configuration Release clean build -allowProvisioningUpdates
+
 
       # 2. Установка Ruby 3.2 (чтобы избежать багов со старой версией)
       - name: Set up Ruby
