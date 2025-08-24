@@ -15,15 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build iOS app with automatic signing
-        run: |
-          xcodebuild -workspace dummy.xcworkspace \
-                     -scheme dummy \
-                     -sdk iphoneos \
-                     -configuration Release \
-                     clean build -allowProvisioningUpdates
-
-
       # 2. Установка Ruby 3.2 (чтобы избежать багов со старой версией)
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
@@ -93,10 +84,11 @@ jobs:
           fi
 
       # 7. Запуск тестов
-      - name: Run Tests
+      - name: Run iOS tests on simulator without signing
         run: |
-          xcodebuild \
+          xcodebuild test \
             -workspace dummy.xcworkspace \
             -scheme dummy \
-
-            clean test | xcpretty
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+            clean test
